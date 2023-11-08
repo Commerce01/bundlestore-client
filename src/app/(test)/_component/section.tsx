@@ -11,7 +11,7 @@ function Test({ token }: { token: RequestCookie | undefined }) {
 
   function handleSubmite(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    fetch("http://localhost:4000/api/login", {
+    fetch(process.env.NEXT_PUBLIC_API_HOST + "/api/login", {
       method: "POST",
       headers: {
         "Content-type": "application/json",
@@ -25,7 +25,7 @@ function Test({ token }: { token: RequestCookie | undefined }) {
   }
 
   useEffect(() => {
-    fetch("http://localhost:4000/api/users", {
+    fetch(process.env.NEXT_PUBLIC_API_HOST + "/api/users", {
       headers: {
         authorization: "Bearer " + token?.value,
       },

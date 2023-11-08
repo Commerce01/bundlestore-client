@@ -35,7 +35,7 @@ function Register() {
     if (!email || !password || !name || !phone || !address)
       return alert("NO NO NO");
 
-    fetch("http://localhost:4000/api/register", {
+    fetch(process.env.NEXT_PUBLIC_API_HOST + "/api/register", {
       method: "POST",
       headers: {
         "content-type": "application/json",

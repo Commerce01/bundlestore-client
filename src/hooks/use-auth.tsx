@@ -21,24 +21,30 @@ type AuthActions = {
 };
 
 async function login(email: string, password: string) {
-  const response = await fetch("http://localhost:4000/api/login", {
-    method: "POST",
-    headers: {
-      "content-type": "application/json",
-    },
-    body: JSON.stringify({ email, password }),
-    credentials: "include",
-  });
+  const response = await fetch(
+    process.env.NEXT_PUBLIC_API_HOST + "/api/login",
+    {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify({ email, password }),
+      credentials: "include",
+    }
+  );
   const data = await response.json();
   return data;
 }
 
 async function getUser(token: string) {
-  const response = await fetch("http://localhost:4000/api/users", {
-    headers: {
-      authorization: `Bearer ${token}`,
-    },
-  });
+  const response = await fetch(
+    process.env.NEXT_PUBLIC_API_HOST + "/api/users",
+    {
+      headers: {
+        authorization: `Bearer ${token}`,
+      },
+    }
+  );
   const data = await response.json();
   return data;
 }
@@ -61,7 +67,7 @@ const useAuth = create<AuthActions>((set) => ({
     set({ user: {} as AuthState, token: undefined });
   },
   verifyToken: async () => {
-    const res = await fetch("http://localhost:4000/api/verify-token", {
+    const res = await fetch("/api/verify-token", {
       method: "POST",
       headers: {
         authorization: `Bearer ${cookies.get("token")}`,
