@@ -19,6 +19,7 @@ import Link from "next/link";
 
 function Navbar() {
   const [isOpen, setOpen] = useState(false);
+
   return (
     <div className="mx-6 flex justify-between items-center px-3 py-3">
       <div>
@@ -47,7 +48,7 @@ function Navbar() {
               </Link>
             </NavigationMenuItem>
             <NavigationMenuItem>
-              <Link href={"/"} legacyBehavior passHref>
+              <Link href={"/products"} legacyBehavior passHref>
                 <NavigationMenuLink className={navigationMenuTriggerStyle()}>
                   Product
                 </NavigationMenuLink>
